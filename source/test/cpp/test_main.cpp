@@ -6,15 +6,8 @@
 #include "xunittest/private/ut_ReportAssert.h"
 
 
-UNITTEST_SUITE_LIST(xHashUnitTest);
-UNITTEST_SUITE_DECLARE(xHashUnitTest, xcrc);
-UNITTEST_SUITE_DECLARE(xHashUnitTest, xmd5);
-UNITTEST_SUITE_DECLARE(xHashUnitTest, xsha1);
-UNITTEST_SUITE_DECLARE(xHashUnitTest, xskein);
-UNITTEST_SUITE_DECLARE(xHashUnitTest, xuuid);
-UNITTEST_SUITE_DECLARE(xHashUnitTest, xmurmur32);
-UNITTEST_SUITE_DECLARE(xHashUnitTest, xmurmur64);
-UNITTEST_SUITE_DECLARE(xHashUnitTest, xxhash64);
+UNITTEST_SUITE_LIST(xStackTraceUnitTest);
+UNITTEST_SUITE_DECLARE(xStackTraceUnitTest, xtrace);
 
 namespace xcore
 {
@@ -44,7 +37,7 @@ namespace xcore
 	public:
 						UnitTestAllocator(xcore::xalloc* allocator)	{ mAllocator = allocator; }
 		virtual void*	Allocate(xsize_t size)								{ return mAllocator->allocate((u32)size, sizeof(void*)); }
-		virtual void	Deallocate(void* ptr)								{ mAllocator->deallocate(ptr); }
+		virtual xsize_t	Deallocate(void* ptr)								{ return mAllocator->deallocate(ptr); }
 	};
 
 	class TestAllocator : public xalloc
@@ -55,19 +48,19 @@ namespace xcore
 
 		virtual const char*	name() const										{ return "xhash unittest test heap allocator"; }
 
-		virtual void*		allocate(xsize_t size, u32 alignment)
+		virtual void*		v_allocate(xsize_t size, u32 alignment)
 		{
 			UnitTest::IncNumAllocations();
 			return mAllocator->allocate(size, alignment);
 		}
 
-		virtual void		deallocate(void* mem)
+		virtual u32			v_deallocate(void* mem)
 		{
 			UnitTest::DecNumAllocations();
-			mAllocator->deallocate(mem);
+			return mAllocator->deallocate(mem);
 		}
 
-		virtual void		release()
+		virtual void		v_release()
 		{
 			mAllocator->release();
 			mAllocator = NULL;
@@ -97,7 +90,7 @@ bool gRunUnitTest(UnitTest::TestReporter& reporter)
 	xcore::TestAllocator testAllocator(systemAllocator);
 	gTestAllocator = &testAllocator;
 
-	int r = UNITTEST_SUITE_RUN(reporter, xHashUnitTest);
+	int r = UNITTEST_SUITE_RUN(reporter, xStackTraceUnitTest);
 	if (UnitTest::GetNumAllocations()!=0)
 	{
 		reporter.reportFailure(__FILE__, __LINE__, "xunittest", "memory leaks detected!");
