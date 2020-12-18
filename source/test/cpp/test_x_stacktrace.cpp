@@ -7,7 +7,7 @@
 
 namespace xcore
 {
-	extern xalloc* gTestAllocator;
+	extern alloc_t* gTestAllocator;
 
 }
 
