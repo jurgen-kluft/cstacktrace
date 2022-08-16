@@ -1,9 +1,9 @@
-#include "xbase/x_allocator.h"
-#include "xbase/x_integer.h"
+#include "cbase/c_allocator.h"
+#include "cbase/c_integer.h"
 
-#include "xunittest/xunittest.h"
+#include "cunittest/xunittest.h"
 
-#include "xcallstack/x_callstack.h"
+#include "ccallstack/c_callstack.h"
 
 namespace xcore
 {
