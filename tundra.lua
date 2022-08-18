@@ -29,34 +29,34 @@ Build {
 			}
 		end
 		local xunittest_library = StaticLibrary {
-			Name = "xunittest",
+			Name = "cunittest",
 			Config = "*-*-*-test",
-			Sources = { SourceGlob("../xunittest/source/main/cpp") },
-			Includes = { "..//xunittest/source/main/include" },
+			Sources = { SourceGlob("../cunittest/source/main/cpp") },
+			Includes = { "..//cunittest/source/main/include" },
 		}
 		local xentry_library = StaticLibrary {
-			Name = "xentry",
+			Name = "centry",
 			Config = "*-*-*-*",
-			Sources = { SourceGlob("../xentry/source/main/cpp") },
-			Includes = { "..//xentry/source/main/include" },
+			Sources = { SourceGlob("../centry/source/main/cpp") },
+			Includes = { "..//centry/source/main/include" },
 		}
 		local xbase_library = StaticLibrary {
-			Name = "xbase",
+			Name = "cbase",
 			Config = "*-*-*-*",
-			Sources = { SourceGlob("../xbase/source/main/cpp") },
-			Includes = { "..//xbase/source/main/include","..//xunittest/source/main/include" },
+			Sources = { SourceGlob("../cbase/source/main/cpp") },
+			Includes = { "..//cbase/source/main/include","..//cunittest/source/main/include" },
 		}
 		local xhash_library = StaticLibrary {
 			Name = "xhash",
 			Config = "*-*-*-*",
 			Sources = { SourceGlob("source/main/cpp") },
-			Includes = { "..//xhash/source/main/include","..//xbase/source/main/include" },
+			Includes = { "..//xhash/source/main/include","..//cbase/source/main/include" },
 		}
 		local unittest = Program {
 			Name = "xhash_test",
 			Config = "*-*-*-test",
 			Sources = { SourceGlob("source/test/cpp") },
-			Includes = { "source/main/include","source/test/include","..//xunittest/source/main/include","..//xentry/source/main/include","..//xbase/source/main/include","..//xhash/source/main/include" },
+			Includes = { "source/main/include","source/test/include","..//cunittest/source/main/include","..//centry/source/main/include","..//cbase/source/main/include","..//xhash/source/main/include" },
 			Depends = { xunittest_library,xentry_library,xbase_library,xhash_library },
 		}
 		Default(unittest)
