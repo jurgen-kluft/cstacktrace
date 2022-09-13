@@ -6,7 +6,7 @@
 #endif
 
 
-namespace xcore
+namespace ncore
 {
 	class xstacktrace
 	{

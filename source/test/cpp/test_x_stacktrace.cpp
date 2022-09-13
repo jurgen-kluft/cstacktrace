@@ -5,7 +5,7 @@
 
 #include "ccallstack/c_callstack.h"
 
-namespace xcore
+namespace ncore
 {
 	extern alloc_t* gTestAllocator;
 

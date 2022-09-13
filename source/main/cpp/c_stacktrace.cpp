@@ -4748,7 +4748,7 @@ namespace backward
 
 } // namespace backward
 
-namespace xcore
+namespace ncore
 {
 	void			xstacktrace::print()
 	{

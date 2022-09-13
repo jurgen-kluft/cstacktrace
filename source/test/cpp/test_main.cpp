@@ -9,7 +9,7 @@
 UNITTEST_SUITE_LIST(xStackTraceUnitTest);
 UNITTEST_SUITE_DECLARE(xStackTraceUnitTest, xtrace);
 
-namespace xcore
+namespace ncore
 {
 	// Our own assert handler
 	class UnitTestAssertHandler : public xcore::xasserthandler
