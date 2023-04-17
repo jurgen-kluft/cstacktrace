@@ -5,11 +5,6 @@
 
 #include "ccallstack/c_callstack.h"
 
-namespace ncore
-{
-	extern alloc_t* gTestAllocator;
-
-}
 
 UNITTEST_SUITE_BEGIN(xtrace)
 {
@@ -25,7 +20,7 @@ UNITTEST_SUITE_BEGIN(xtrace)
 
 		UNITTEST_TEST(trace_1)
 		{
-			xcore::xstacktrace::print();
+			ncore::xstacktrace::print();
 		}
 	}
 }
